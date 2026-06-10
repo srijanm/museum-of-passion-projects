@@ -1,0 +1,48 @@
+---
+interface Work {
+  title: string;
+  year: string;
+  medium: string;
+  accession: string;
+  credit: string;
+  status: string;
+  url: string;
+  image: string;
+  note: string;
+}
+
+const { work } = Astro.props as { work: Work };
+const statusClass = 'status--' + work.status.trim().toLowerCase().replace(/\s+/g, '-');
+---
+
+<article class="placard">
+  <figure class="placard__frame">
+    <img src={work.image} alt={`${work.title}, ${work.year}`} width="1200" height="800" loading="lazy" />
+  </figure>
+
+  <div class="label">
+    <h3 class="label__title">
+      {work.title} <span class="label__year">{work.year}</span>
+    </h3>
+    <p class="label__medium">{work.medium}</p>
+
+    <dl class="meta">
+      <div class="meta__row">
+        <dt>Credit</dt>
+        <dd>{work.credit}</dd>
+      </div>
+      <div class="meta__row">
+        <dt>Accession</dt>
+        <dd class="mono">{work.accession}</dd>
+      </div>
+      <div class="meta__row">
+        <dt>Status</dt>
+        <dd><span class={`status ${statusClass}`}>{work.status}</span></dd>
+      </div>
+    </dl>
+
+    <p class="label__note">{work.note}</p>
+
+    <a class="label__link" href={work.url} target="_blank" rel="noopener noreferrer">view the work →</a>
+  </div>
+</article>

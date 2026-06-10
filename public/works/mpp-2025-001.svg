@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="i know a spot">
+  <rect width="1200" height="800" fill="#e7ddc9"/>
+  <rect x="80" y="80" width="1040" height="640" rx="14" fill="#fbf8f1" stroke="#cdbfa3"/>
+  <path d="M80 94 a14 14 0 0 1 14-14 h1012 a14 14 0 0 1 14 14 v50 h-1040 z" fill="#efe7d6"/>
+  <circle cx="118" cy="112" r="7" fill="#cdbfa3"/>
+  <circle cx="142" cy="112" r="7" fill="#cdbfa3"/>
+  <circle cx="166" cy="112" r="7" fill="#cdbfa3"/>
+  <text x="206" y="119" font-family="monospace" font-size="20" fill="#7c715a">iknowaspot.in</text>
+  <text x="600" y="410" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="76" fill="#2f6f5e">i know a spot</text>
+  <text x="600" y="476" text-anchor="middle" font-family="Georgia, serif" font-size="27" fill="#8a7d63">an illustrated guide to a city</text>
+  <text x="600" y="512" text-anchor="middle" font-family="Georgia, serif" font-size="27" fill="#8a7d63">that hides in plain sight</text>
+</svg>

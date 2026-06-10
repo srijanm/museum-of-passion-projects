@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import Placard from '../components/Placard.astro';
+import works from '../data/works.json';
+---
+
+<Base>
+  <section class="section" aria-labelledby="permanent">
+    <h2 class="section__head" id="permanent">
+      <span>Permanent Collection</span>
+      <span class="count">{works.length} works</span>
+    </h2>
+    <div class="placards">
+      {works.map((work) => <Placard work={work} />)}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="upcoming">
+    <h2 class="section__head" id="upcoming">
+      <span>Upcoming Exhibitions</span>
+    </h2>
+    <p class="section__note">The Museum is in talks with the artists. Announcements to follow.</p>
+  </section>
+
+  <section class="section" aria-labelledby="storage">
+    <h2 class="section__head" id="storage">
+      <span>Storage</span>
+    </h2>
+    <p class="section__note">Nothing is currently in storage. The Museum expects this to change.</p>
+  </section>
+</Base>

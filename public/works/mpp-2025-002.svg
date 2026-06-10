@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="bhai se poocho">
+  <rect width="1200" height="800" fill="#dbe7f5"/>
+  <rect x="80" y="80" width="1040" height="640" rx="14" fill="#ffffff" stroke="#c4d4e6"/>
+  <path d="M80 94 a14 14 0 0 1 14-14 h1012 a14 14 0 0 1 14 14 v50 h-1040 z" fill="#eef4fb"/>
+  <circle cx="118" cy="112" r="7" fill="#c4d4e6"/>
+  <circle cx="142" cy="112" r="7" fill="#c4d4e6"/>
+  <circle cx="166" cy="112" r="7" fill="#c4d4e6"/>
+  <text x="206" y="119" font-family="monospace" font-size="20" fill="#5a7491">bhaisepoocho.com</text>
+  <text x="600" y="410" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="76" fill="#1d9bf0">bhai se poocho</text>
+  <text x="600" y="476" text-anchor="middle" font-family="Georgia, serif" font-size="27" fill="#5a7491">any pareshani, answered</text>
+  <text x="600" y="512" text-anchor="middle" font-family="Georgia, serif" font-size="27" fill="#5a7491">in the manner of a gentleman of Bandra</text>
+</svg>
