@@ -44,16 +44,18 @@ const {
 
     <style is:global>
       :root {
-        --paper: #f4f1e8;
-        --paper-raised: #fbf9f3;
-        --ink: #181612;
-        --muted: #6f6657;
-        --faint: #9a9082;
-        --rule: #d9d2c4;
-        --rule-strong: #c4bba9;
-        --link: #5b3a2e;
+        --paper: #f1ede3;
+        --mat: #fbfaf6;
+        --moulding-light: #3a322a;
+        --moulding-dark: #16110c;
+        --ink: #201c16;
+        --muted: #7c7263;
+        --faint: #a39a89;
+        --rule: #ddd6c8;
+        --link: #4a3326;
         --serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
         --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+        --wall: 780px;
       }
 
       * {
@@ -69,8 +71,8 @@ const {
         background: var(--paper);
         color: var(--ink);
         font-family: var(--serif);
-        font-size: 19px;
-        line-height: 1.6;
+        font-size: 20px;
+        line-height: 1.62;
         font-feature-settings: 'kern' 1, 'liga' 1;
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
@@ -82,240 +84,216 @@ const {
         text-decoration-thickness: 1px;
       }
 
-      a:hover {
-        text-decoration-thickness: 2px;
-      }
-
       .content {
-        max-width: 1080px;
+        max-width: var(--wall);
         margin: 0 auto;
-        padding: 0 28px;
+        padding: 0 32px;
       }
 
       /* ---- Masthead ---- */
       .masthead {
-        max-width: 1080px;
+        max-width: var(--wall);
         margin: 0 auto;
-        padding: 64px 28px 40px;
+        padding: 96px 32px 0;
         text-align: center;
-        border-bottom: 1px solid var(--rule);
       }
 
       .masthead__name {
         display: inline-block;
         font-family: var(--serif);
         font-weight: 500;
-        font-size: clamp(2rem, 6vw, 3.6rem);
-        line-height: 1.05;
+        font-size: clamp(1.9rem, 5.5vw, 3rem);
+        line-height: 1.08;
         letter-spacing: 0.01em;
         color: var(--ink);
         text-decoration: none;
       }
 
-      .masthead__name:hover {
-        text-decoration: none;
-        color: var(--link);
-      }
-
       .masthead__sub {
-        margin: 14px 0 0;
-        font-family: var(--mono);
-        font-size: 0.72rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
+        margin: 16px 0 0;
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 1.02rem;
         color: var(--muted);
       }
 
-      /* ---- Section signage ---- */
+      /* ---- Section signage (quiet wall text) ---- */
       .section {
-        padding: 56px 0;
-        border-bottom: 1px solid var(--rule);
+        padding: 64px 0;
       }
 
-      .section:last-of-type {
-        border-bottom: 0;
+      .section + .section {
+        padding-top: 16px;
       }
 
       .section__head {
-        font-family: var(--mono);
+        font-family: var(--serif);
         font-weight: 500;
-        font-size: 0.78rem;
-        letter-spacing: 0.22em;
+        font-size: 0.82rem;
+        letter-spacing: 0.32em;
         text-transform: uppercase;
-        color: var(--ink);
-        margin: 0 0 36px;
-        padding-bottom: 12px;
-        border-bottom: 2px solid var(--ink);
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 1em;
-      }
-
-      .section__head .count {
-        color: var(--faint);
-        font-size: 0.72rem;
-        letter-spacing: 0.16em;
+        color: var(--muted);
+        margin: 0 0 56px;
+        text-align: center;
       }
 
       .section__note {
+        font-style: italic;
         font-size: 1.12rem;
         color: var(--muted);
-        max-width: 46ch;
-        margin: 0;
+        max-width: 42ch;
+        margin: 0 auto;
+        text-align: center;
       }
 
-      /* ---- Placards ---- */
-      .placards {
+      /* ---- The wall: one work at a time ---- */
+      .works {
         display: flex;
         flex-direction: column;
-        gap: 64px;
+        gap: 112px;
       }
 
-      .placard {
-        display: grid;
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-        gap: 44px;
-        align-items: start;
-      }
-
-      .placard__frame {
+      .work {
         margin: 0;
-        background: var(--paper-raised);
-        padding: 14px;
-        border: 1px solid var(--rule-strong);
-        box-shadow: 0 1px 0 #fff inset, 0 14px 30px -22px rgba(24, 22, 18, 0.5);
       }
 
-      .placard__frame img {
+      /* ---- The frame (a link) ---- */
+      .frame {
+        position: relative;
+        display: block;
+        padding: 13px;
+        background: linear-gradient(150deg, var(--moulding-light), var(--moulding-dark) 70%);
+        border-radius: 2px;
+        text-decoration: none;
+        box-shadow:
+          0 0 0 1px rgba(0, 0, 0, 0.35),
+          0 1px 0 rgba(255, 255, 255, 0.05) inset,
+          0 3px 4px -1px rgba(20, 14, 8, 0.28),
+          0 30px 52px -26px rgba(20, 14, 8, 0.62);
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+      }
+
+      .frame__mat {
+        display: block;
+        background: var(--mat);
+        padding: 26px;
+        box-shadow:
+          0 1px 2px rgba(0, 0, 0, 0.18) inset,
+          0 0 0 1px rgba(0, 0, 0, 0.06);
+      }
+
+      .frame__art {
+        position: relative;
+        display: block;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        background: #c7c2b6;
+        box-shadow:
+          inset 0 2px 8px rgba(0, 0, 0, 0.22),
+          inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+      }
+
+      .frame__art img {
         display: block;
         width: 100%;
-        height: auto;
-        border: 1px solid var(--rule);
+        height: 100%;
+        object-fit: cover;
       }
 
-      .label {
-        padding-top: 4px;
-      }
-
-      .label__title {
-        font-size: 1.7rem;
-        font-weight: 600;
-        line-height: 1.15;
-        margin: 0;
-      }
-
-      .label__year {
-        font-weight: 400;
-        font-style: italic;
-        color: var(--muted);
-      }
-
-      .label__medium {
-        margin: 6px 0 20px;
-        font-style: italic;
-        color: var(--ink);
-        max-width: 40ch;
-      }
-
-      .meta {
-        margin: 0 0 20px;
-        border-top: 1px solid var(--rule);
-      }
-
-      .meta__row {
-        display: grid;
-        grid-template-columns: 8.5em 1fr;
-        gap: 1em;
-        padding: 8px 0;
-        border-bottom: 1px solid var(--rule);
-      }
-
-      .meta__row dt {
+      /* ---- The one interactive touch (desktop hover only) ---- */
+      .frame__notice {
+        position: absolute;
+        left: 50%;
+        bottom: 30px;
+        transform: translate(-50%, 10px);
+        background: rgba(22, 17, 12, 0.92);
+        color: #f1ede3;
         font-family: var(--mono);
-        font-size: 0.66rem;
+        font-size: 0.62rem;
         letter-spacing: 0.16em;
         text-transform: uppercase;
-        color: var(--muted);
-        padding-top: 0.35em;
+        padding: 8px 14px;
+        border-radius: 2px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.28s ease, transform 0.28s ease;
       }
 
-      .meta__row dd {
+      @media (hover: hover) and (pointer: fine) {
+        .frame:hover {
+          box-shadow:
+            0 0 0 1px rgba(0, 0, 0, 0.35),
+            0 1px 0 rgba(255, 255, 255, 0.05) inset,
+            0 4px 6px -1px rgba(20, 14, 8, 0.3),
+            0 38px 60px -26px rgba(20, 14, 8, 0.66);
+          transform: translateY(-2px);
+        }
+
+        .frame:hover .frame__notice {
+          opacity: 1;
+          transform: translate(-50%, 0);
+        }
+      }
+
+      /* ---- The placard (wall label) ---- */
+      .placard {
+        margin: 26px 2px 0;
+        max-width: 52ch;
+      }
+
+      .placard__line {
         margin: 0;
+        font-size: 1.28rem;
+        line-height: 1.25;
+        color: var(--ink);
       }
 
-      .meta__row dd.mono {
-        font-family: var(--mono);
-        font-size: 0.85rem;
-        letter-spacing: 0.04em;
+      .placard__title {
+        font-style: italic;
+        font-weight: 500;
       }
 
-      .status {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5em;
+      .placard__year {
+        color: var(--muted);
+      }
+
+      .placard__medium {
+        margin: 4px 0 0;
+        font-size: 1.02rem;
+        color: var(--ink);
+      }
+
+      .placard__meta {
+        margin: 10px 0 0;
         font-family: var(--mono);
         font-size: 0.72rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--ink);
+        letter-spacing: 0.04em;
+        color: var(--muted);
       }
 
-      .status::before {
-        content: '';
-        width: 0.5em;
-        height: 0.5em;
-        border-radius: 50%;
-        background: var(--faint);
-      }
-
-      .status--on-view::before {
-        background: #3a7d44;
-      }
-
-      .status--upcoming::before {
-        background: #b8860b;
-      }
-
-      .status--in-storage::before {
-        background: #8a8170;
-      }
-
-      .label__note {
-        margin: 0 0 22px;
-        max-width: 44ch;
-      }
-
-      .label__link {
-        font-family: var(--mono);
-        font-size: 0.74rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        text-decoration: none;
-        border-bottom: 1px solid currentColor;
-        padding-bottom: 2px;
-      }
-
-      .label__link:hover {
-        text-decoration: none;
-        color: var(--ink);
+      .placard__note {
+        margin: 14px 0 0;
+        font-size: 1.02rem;
+        color: #4a4339;
+        max-width: 48ch;
       }
 
       /* ---- Colophon (about) ---- */
       .colophon {
-        padding: 56px 0 24px;
-        max-width: 54ch;
+        padding: 72px 0 24px;
+        max-width: 52ch;
       }
 
       .colophon h1 {
-        font-family: var(--mono);
+        font-family: var(--serif);
         font-weight: 500;
-        font-size: 0.78rem;
-        letter-spacing: 0.22em;
+        font-size: 0.82rem;
+        letter-spacing: 0.32em;
         text-transform: uppercase;
-        margin: 0 0 32px;
-        padding-bottom: 12px;
-        border-bottom: 2px solid var(--ink);
+        color: var(--muted);
+        margin: 0 0 40px;
+        text-align: center;
       }
 
       .colophon p {
@@ -323,52 +301,67 @@ const {
       }
 
       .colophon .admin {
+        margin-top: 28px;
         font-family: var(--mono);
-        font-size: 0.8rem;
-        letter-spacing: 0.04em;
+        font-size: 0.78rem;
+        letter-spacing: 0.03em;
         color: var(--muted);
       }
 
       /* ---- Footer ---- */
       .footer {
-        max-width: 1080px;
+        max-width: var(--wall);
         margin: 0 auto;
-        padding: 48px 28px 72px;
-        border-top: 1px solid var(--rule);
+        padding: 80px 32px 88px;
         text-align: center;
-        font-family: var(--mono);
-        font-size: 0.74rem;
-        letter-spacing: 0.1em;
+        font-family: var(--serif);
+        font-size: 0.92rem;
         color: var(--muted);
       }
 
       .footer p {
-        margin: 0 0 8px;
+        margin: 0 0 7px;
       }
 
       .footer a {
         color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.14em;
+        font-style: italic;
       }
 
       .footer a:hover {
         color: var(--ink);
       }
 
-      @media (max-width: 720px) {
+      @media (max-width: 640px) {
         body {
-          font-size: 18px;
+          font-size: 19px;
         }
-        .placard {
-          grid-template-columns: 1fr;
-          gap: 22px;
+        .content {
+          padding: 0 22px;
+        }
+        .masthead {
+          padding: 64px 22px 0;
         }
         .section {
-          padding: 44px 0;
+          padding: 48px 0;
         }
-        .placards {
-          gap: 52px;
+        .works {
+          gap: 80px;
+        }
+        .section__head {
+          margin-bottom: 40px;
+        }
+        .frame {
+          padding: 10px;
+        }
+        .frame__mat {
+          padding: 16px;
+        }
+        .frame__notice {
+          display: none;
+        }
+        .footer {
+          padding: 60px 22px 72px;
         }
       }
     </style>

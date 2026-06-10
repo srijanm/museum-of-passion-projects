@@ -12,37 +12,24 @@ interface Work {
 }
 
 const { work } = Astro.props as { work: Work };
-const statusClass = 'status--' + work.status.trim().toLowerCase().replace(/\s+/g, '-');
 ---
 
-<article class="placard">
-  <figure class="placard__frame">
-    <img src={work.image} alt={`${work.title}, ${work.year}`} width="1200" height="800" loading="lazy" />
-  </figure>
+<figure class="work">
+  <a class="frame" href={work.url} target="_blank" rel="noopener noreferrer" aria-label={`${work.title} — open in a new tab`}>
+    <span class="frame__mat">
+      <span class="frame__art">
+        <img src={work.image} alt={`${work.title}, ${work.year}`} width="1280" height="800" loading="lazy" />
+      </span>
+    </span>
+    <span class="frame__notice" aria-hidden="true">please do not touch the exhibits</span>
+  </a>
 
-  <div class="label">
-    <h3 class="label__title">
-      {work.title} <span class="label__year">{work.year}</span>
-    </h3>
-    <p class="label__medium">{work.medium}</p>
-
-    <dl class="meta">
-      <div class="meta__row">
-        <dt>Credit</dt>
-        <dd>{work.credit}</dd>
-      </div>
-      <div class="meta__row">
-        <dt>Accession</dt>
-        <dd class="mono">{work.accession}</dd>
-      </div>
-      <div class="meta__row">
-        <dt>Status</dt>
-        <dd><span class={`status ${statusClass}`}>{work.status}</span></dd>
-      </div>
-    </dl>
-
-    <p class="label__note">{work.note}</p>
-
-    <a class="label__link" href={work.url} target="_blank" rel="noopener noreferrer">view the work →</a>
-  </div>
-</article>
+  <figcaption class="placard">
+    <p class="placard__line">
+      <span class="placard__title">{work.title}</span><span class="placard__year">, {work.year}</span>
+    </p>
+    <p class="placard__medium">{work.medium}</p>
+    <p class="placard__meta">{work.accession} · {work.credit}</p>
+    <p class="placard__note">{work.note}</p>
+  </figcaption>
+</figure>
