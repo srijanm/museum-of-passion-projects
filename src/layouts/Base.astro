@@ -22,7 +22,7 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Libre+Franklin:wght@400;500&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -44,18 +44,18 @@ const {
 
     <style is:global>
       :root {
-        --paper: #f6f2ea; /* warm gallery wall */
-        --mat: #fcfaf4; /* warm near-white mat (never pure white) */
+        --paper: #ffffff; /* white cube gallery wall */
+        --mat: #ffffff; /* white mat; separated from the wall by a hairline + shadow */
         --moulding-light: #3a322a;
         --moulding-dark: #16110c;
-        --ink: #1a1814;
-        --muted: #6b6459;
-        --faint: #9a9182;
-        --rule: #e2dcd0;
-        --link: #4a3326;
-        --note: #2e2a22;
+        --ink: #141414; /* near-black, neutral */
+        --muted: #777777; /* neutral gray metadata */
+        --faint: #9a9a9a;
+        --rule: #e6e6e6;
+        --link: #2a2a2a;
+        --note: #1c1c1c;
         --serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
-        --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+        --sans: 'Libre Franklin', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
         --wall: 1200px;
       }
 
@@ -162,10 +162,10 @@ const {
         border-radius: 2px;
         text-decoration: none;
         box-shadow:
-          0 0 0 1px rgba(0, 0, 0, 0.35),
+          0 0 0 1px rgba(0, 0, 0, 0.4),
           0 1px 0 rgba(255, 255, 255, 0.05) inset,
-          0 3px 4px -1px rgba(20, 14, 8, 0.28),
-          0 26px 46px -24px rgba(20, 14, 8, 0.6);
+          0 3px 4px -1px rgba(0, 0, 0, 0.22),
+          0 26px 46px -24px rgba(0, 0, 0, 0.45);
         transition: box-shadow 0.3s ease, transform 0.3s ease;
       }
 
@@ -173,9 +173,11 @@ const {
         display: block;
         background: var(--mat);
         padding: 22px;
+        /* hairline + faint inner shadow so the white mat stays distinct
+           from the white wall and reads as a recessed mat board */
         box-shadow:
-          0 1px 2px rgba(0, 0, 0, 0.18) inset,
-          0 0 0 1px rgba(0, 0, 0, 0.06);
+          inset 0 0 0 1px rgba(0, 0, 0, 0.09),
+          inset 0 2px 6px rgba(0, 0, 0, 0.06);
       }
 
       .frame__art {
@@ -183,7 +185,7 @@ const {
         display: block;
         aspect-ratio: 16 / 10;
         overflow: hidden;
-        background: #c9c3b5;
+        background: #ededed;
         box-shadow:
           inset 0 2px 8px rgba(0, 0, 0, 0.22),
           inset 0 0 0 1px rgba(0, 0, 0, 0.08);
@@ -214,8 +216,8 @@ const {
         left: 50%;
         bottom: 28px;
         transform: translate(-50%, 10px);
-        background: rgba(22, 17, 12, 0.92);
-        color: #f6f2ea;
+        background: rgba(17, 17, 17, 0.92);
+        color: #ffffff;
         font-family: var(--sans);
         font-size: 0.62rem;
         font-weight: 400;
@@ -232,10 +234,10 @@ const {
       @media (hover: hover) and (pointer: fine) {
         a.frame:hover {
           box-shadow:
-            0 0 0 1px rgba(0, 0, 0, 0.35),
+            0 0 0 1px rgba(0, 0, 0, 0.4),
             0 1px 0 rgba(255, 255, 255, 0.05) inset,
-            0 4px 6px -1px rgba(20, 14, 8, 0.32),
-            0 34px 56px -24px rgba(20, 14, 8, 0.64);
+            0 4px 6px -1px rgba(0, 0, 0, 0.26),
+            0 34px 56px -24px rgba(0, 0, 0, 0.5);
           transform: translateY(-2px);
         }
 
