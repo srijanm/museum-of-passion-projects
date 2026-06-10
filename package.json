@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "capture": "node scripts/capture.mjs"
   },
   "devDependencies": {
-    "astro": "^6.0.0"
+    "astro": "^6.0.0",
+    "playwright": "^1.60.0"
   }
 }

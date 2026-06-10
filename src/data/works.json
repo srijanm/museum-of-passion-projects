@@ -7,7 +7,7 @@
     "credit": "On loan from the artists",
     "status": "on view",
     "url": "https://iknowaspot.in",
-    "image": "/works/mpp-2025-001.svg",
+    "image": "/works/iknowaspot.png",
     "note": "An illustrated guide to a city that hides too much of itself in plain sight. The artists report the work may never be finished. Delhi has offered no comment."
   },
   {
@@ -18,7 +18,7 @@
     "credit": "On loan from the artists",
     "status": "on view",
     "url": "https://bhaisepoocho.com",
-    "image": "/works/mpp-2025-002.svg",
+    "image": "/works/bhaisepoocho.png",
     "note": "A machine that answers any pareshani in the manner of a certain gentleman of Bandra. The Museum notes, for legal reasons, that the work is not affiliated with Mr. Khan."
   },
   {
@@ -29,7 +29,7 @@
     "credit": "Collection of the Museum",
     "status": "on view",
     "url": "https://old-internet-zeta.vercel.app",
-    "image": "/works/mpp-2025-003.svg",
+    "image": "/works/oldinternet.png",
     "note": "Renders the Twitter of 2006, before the feed knew your name. Side effects include nostalgia and a sudden urge to print emails. Y2K tested."
   }
 ]
