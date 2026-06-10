@@ -22,7 +22,7 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -44,18 +44,19 @@ const {
 
     <style is:global>
       :root {
-        --paper: #f1ede3;
-        --mat: #fbfaf6;
+        --paper: #f6f2ea; /* warm gallery wall */
+        --mat: #fcfaf4; /* warm near-white mat (never pure white) */
         --moulding-light: #3a322a;
         --moulding-dark: #16110c;
-        --ink: #201c16;
-        --muted: #7c7263;
-        --faint: #a39a89;
-        --rule: #ddd6c8;
+        --ink: #1a1814;
+        --muted: #6b6459;
+        --faint: #9a9182;
+        --rule: #e2dcd0;
         --link: #4a3326;
+        --note: #2e2a22;
         --serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
-        --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
-        --wall: 780px;
+        --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+        --wall: 1200px;
       }
 
       * {
@@ -110,20 +111,21 @@ const {
       }
 
       .masthead__sub {
-        margin: 16px 0 0;
-        font-family: var(--serif);
-        font-style: italic;
-        font-size: 1.02rem;
+        margin: 18px 0 0;
+        font-family: var(--sans);
+        font-size: 0.78rem;
+        font-weight: 400;
+        letter-spacing: 0.1em;
         color: var(--muted);
       }
 
-      /* ---- Section signage (quiet wall text) ---- */
+      /* ---- Section signage (quiet wall text, left-aligned to grid) ---- */
       .section {
-        padding: 64px 0;
+        padding: 60px 0;
       }
 
       .section + .section {
-        padding-top: 16px;
+        padding-top: 12px;
       }
 
       .section__head {
@@ -133,35 +135,29 @@ const {
         letter-spacing: 0.32em;
         text-transform: uppercase;
         color: var(--muted);
-        margin: 0 0 56px;
-        text-align: center;
+        margin: 0 0 32px;
+        text-align: left;
       }
 
-      .section__note {
-        font-style: italic;
-        font-size: 1.12rem;
-        color: var(--muted);
-        max-width: 42ch;
-        margin: 0 auto;
-        text-align: center;
-      }
-
-      /* ---- The wall: one work at a time ---- */
+      /* ---- The wall: works hung left to right ---- */
       .works {
-        display: flex;
-        flex-direction: column;
-        gap: 112px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 64px 40px;
+        align-items: start; /* placards top-align across a row */
       }
 
       .work {
         margin: 0;
+        display: flex;
+        flex-direction: column;
       }
 
-      /* ---- The frame (a link) ---- */
+      /* ---- The frame ---- */
       .frame {
         position: relative;
         display: block;
-        padding: 13px;
+        padding: 12px;
         background: linear-gradient(150deg, var(--moulding-light), var(--moulding-dark) 70%);
         border-radius: 2px;
         text-decoration: none;
@@ -169,14 +165,14 @@ const {
           0 0 0 1px rgba(0, 0, 0, 0.35),
           0 1px 0 rgba(255, 255, 255, 0.05) inset,
           0 3px 4px -1px rgba(20, 14, 8, 0.28),
-          0 30px 52px -26px rgba(20, 14, 8, 0.62);
+          0 26px 46px -24px rgba(20, 14, 8, 0.6);
         transition: box-shadow 0.3s ease, transform 0.3s ease;
       }
 
       .frame__mat {
         display: block;
         background: var(--mat);
-        padding: 26px;
+        padding: 22px;
         box-shadow:
           0 1px 2px rgba(0, 0, 0, 0.18) inset,
           0 0 0 1px rgba(0, 0, 0, 0.06);
@@ -187,7 +183,7 @@ const {
         display: block;
         aspect-ratio: 16 / 10;
         overflow: hidden;
-        background: #c7c2b6;
+        background: #c9c3b5;
         box-shadow:
           inset 0 2px 8px rgba(0, 0, 0, 0.22),
           inset 0 0 0 1px rgba(0, 0, 0, 0.08);
@@ -200,17 +196,30 @@ const {
         object-fit: cover;
       }
 
-      /* ---- The one interactive touch (desktop hover only) ---- */
+      /* ---- Empty frame (Upcoming / Storage): bare wall inside the mat ---- */
+      .frame--empty {
+        cursor: default;
+      }
+
+      .frame--empty .frame__art {
+        background: var(--paper);
+        box-shadow:
+          inset 0 1px 4px rgba(0, 0, 0, 0.1),
+          inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+      }
+
+      /* ---- The one interactive touch (desktop hover, real works only) ---- */
       .frame__notice {
         position: absolute;
         left: 50%;
-        bottom: 30px;
+        bottom: 28px;
         transform: translate(-50%, 10px);
         background: rgba(22, 17, 12, 0.92);
-        color: #f1ede3;
-        font-family: var(--mono);
+        color: #f6f2ea;
+        font-family: var(--sans);
         font-size: 0.62rem;
-        letter-spacing: 0.16em;
+        font-weight: 400;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
         padding: 8px 14px;
         border-radius: 2px;
@@ -221,16 +230,16 @@ const {
       }
 
       @media (hover: hover) and (pointer: fine) {
-        .frame:hover {
+        a.frame:hover {
           box-shadow:
             0 0 0 1px rgba(0, 0, 0, 0.35),
             0 1px 0 rgba(255, 255, 255, 0.05) inset,
-            0 4px 6px -1px rgba(20, 14, 8, 0.3),
-            0 38px 60px -26px rgba(20, 14, 8, 0.66);
+            0 4px 6px -1px rgba(20, 14, 8, 0.32),
+            0 34px 56px -24px rgba(20, 14, 8, 0.64);
           transform: translateY(-2px);
         }
 
-        .frame:hover .frame__notice {
+        a.frame:hover .frame__notice {
           opacity: 1;
           transform: translate(-50%, 0);
         }
@@ -238,13 +247,13 @@ const {
 
       /* ---- The placard (wall label) ---- */
       .placard {
-        margin: 26px 2px 0;
-        max-width: 52ch;
+        margin: 22px 0 0;
       }
 
       .placard__line {
         margin: 0;
-        font-size: 1.28rem;
+        font-family: var(--serif);
+        font-size: 1.24rem;
         line-height: 1.25;
         color: var(--ink);
       }
@@ -255,28 +264,33 @@ const {
       }
 
       .placard__year {
-        color: var(--muted);
+        color: var(--faint);
       }
 
       .placard__medium {
-        margin: 4px 0 0;
-        font-size: 1.02rem;
-        color: var(--ink);
+        margin: 8px 0 0;
+        font-family: var(--sans);
+        font-size: 0.78rem;
+        line-height: 1.5;
+        letter-spacing: 0.03em;
+        color: var(--muted);
       }
 
       .placard__meta {
-        margin: 10px 0 0;
-        font-family: var(--mono);
-        font-size: 0.72rem;
-        letter-spacing: 0.04em;
+        margin: 7px 0 0;
+        font-family: var(--sans);
+        font-size: 0.74rem;
+        line-height: 1.5;
+        letter-spacing: 0.045em;
         color: var(--muted);
       }
 
       .placard__note {
         margin: 14px 0 0;
+        font-family: var(--serif);
         font-size: 1.02rem;
-        color: #4a4339;
-        max-width: 48ch;
+        line-height: 1.5;
+        color: var(--note);
       }
 
       /* ---- Colophon (about) ---- */
@@ -293,18 +307,19 @@ const {
         text-transform: uppercase;
         color: var(--muted);
         margin: 0 0 40px;
-        text-align: center;
+        text-align: left;
       }
 
       .colophon p {
         margin: 0 0 18px;
+        font-family: var(--serif);
       }
 
       .colophon .admin {
         margin-top: 28px;
-        font-family: var(--mono);
-        font-size: 0.78rem;
-        letter-spacing: 0.03em;
+        font-family: var(--sans);
+        font-size: 0.76rem;
+        letter-spacing: 0.045em;
         color: var(--muted);
       }
 
@@ -312,27 +327,37 @@ const {
       .footer {
         max-width: var(--wall);
         margin: 0 auto;
-        padding: 80px 32px 88px;
+        padding: 88px 32px 88px;
         text-align: center;
-        font-family: var(--serif);
-        font-size: 0.92rem;
+        font-family: var(--sans);
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
         color: var(--muted);
       }
 
       .footer p {
-        margin: 0 0 7px;
+        margin: 0 0 8px;
       }
 
       .footer a {
         color: var(--muted);
-        font-style: italic;
+        text-decoration-thickness: 1px;
       }
 
       .footer a:hover {
         color: var(--ink);
       }
 
-      @media (max-width: 640px) {
+      /* ---- Too narrow for three: drop to two ---- */
+      @media (max-width: 1024px) {
+        .works {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 56px 36px;
+        }
+      }
+
+      /* ---- Mobile corridor: single column (stays as before) ---- */
+      @media (max-width: 768px) {
         body {
           font-size: 19px;
         }
@@ -345,11 +370,12 @@ const {
         .section {
           padding: 48px 0;
         }
-        .works {
-          gap: 80px;
-        }
         .section__head {
-          margin-bottom: 40px;
+          margin-bottom: 36px;
+        }
+        .works {
+          grid-template-columns: 1fr;
+          gap: 80px;
         }
         .frame {
           padding: 10px;
