@@ -14,17 +14,19 @@ interface Work {
 const { work } = Astro.props as { work: Work };
 ---
 
-<figure class="work">
-  <a class="frame" href={work.url} target="_blank" rel="noopener noreferrer" aria-label={`${work.title} — open in a new tab`}>
-    <span class="frame__mat">
-      <span class="frame__art">
-        <img src={work.image} alt={`${work.title}, ${work.year}`} width="1280" height="800" loading="lazy" />
+<figure class="work" data-reveal-group>
+  <div class="reveal frame-wrap" data-reveal="frame">
+    <a class="frame" href={work.url} target="_blank" rel="noopener noreferrer" aria-label={`${work.title} — open in a new tab`}>
+      <span class="frame__mat">
+        <span class="frame__art">
+          <img src={work.image} alt={`${work.title}, ${work.year}`} width="1280" height="800" loading="lazy" />
+        </span>
       </span>
-    </span>
-    <span class="frame__notice" aria-hidden="true">please do not touch the exhibits</span>
-  </a>
+      <span class="frame__notice" aria-hidden="true">please do not touch the exhibits</span>
+    </a>
+  </div>
 
-  <figcaption class="placard">
+  <figcaption class="placard reveal" data-reveal="placard">
     <p class="placard__line">
       <span class="placard__title">{work.title}</span><span class="placard__year">, {work.year}</span>
     </p>

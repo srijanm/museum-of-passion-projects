@@ -6,20 +6,22 @@ import works from '../data/works.json';
 
 <Base>
   <section class="section" aria-labelledby="permanent">
-    <h2 class="section__head" id="permanent">Permanent Collection</h2>
+    <h2 class="section__head reveal" id="permanent" data-reveal="head" data-reveal-group>Permanent Collection</h2>
     <div class="works">
       {works.map((work) => <Placard work={work} />)}
     </div>
   </section>
 
   <section class="section" aria-labelledby="upcoming">
-    <h2 class="section__head" id="upcoming">Upcoming Exhibitions</h2>
+    <h2 class="section__head reveal" id="upcoming" data-reveal="head" data-reveal-group>Upcoming Exhibitions</h2>
     <div class="works">
-      <figure class="work">
-        <div class="frame frame--empty" aria-hidden="true">
-          <span class="frame__mat"><span class="frame__art"></span></span>
+      <figure class="work" data-reveal-group>
+        <div class="reveal frame-wrap" data-reveal="frame">
+          <div class="frame frame--empty" aria-hidden="true">
+            <span class="frame__mat"><span class="frame__art"></span></span>
+          </div>
         </div>
-        <figcaption class="placard">
+        <figcaption class="placard reveal" data-reveal="placard">
           <p class="placard__line"><span class="placard__title">Forthcoming acquisition</span></p>
           <p class="placard__note">The Museum is in talks with the artists. Announcements to follow.</p>
         </figcaption>
@@ -28,13 +30,15 @@ import works from '../data/works.json';
   </section>
 
   <section class="section" aria-labelledby="storage">
-    <h2 class="section__head" id="storage">Storage</h2>
+    <h2 class="section__head reveal" id="storage" data-reveal="head" data-reveal-group>Storage</h2>
     <div class="works">
-      <figure class="work">
-        <div class="frame frame--empty" aria-hidden="true">
-          <span class="frame__mat"><span class="frame__art"></span></span>
+      <figure class="work" data-reveal-group>
+        <div class="reveal frame-wrap" data-reveal="frame">
+          <div class="frame frame--empty" aria-hidden="true">
+            <span class="frame__mat"><span class="frame__art"></span></span>
+          </div>
         </div>
-        <figcaption class="placard">
+        <figcaption class="placard reveal" data-reveal="placard">
           <p class="placard__line"><span class="placard__title">Vacant</span></p>
           <p class="placard__note">Nothing is currently in storage. The Museum expects this to change.</p>
         </figcaption>

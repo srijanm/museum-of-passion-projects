@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from 'astro:transitions';
+
 interface Props {
   title?: string;
   description?: string;
@@ -25,6 +27,7 @@ const {
       href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Libre+Franklin:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <ClientRouter />
   </head>
   <body>
     <header class="masthead">
@@ -57,6 +60,7 @@ const {
         --serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
         --sans: 'Libre Franklin', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
         --wall: 1200px;
+        --ease: cubic-bezier(0.22, 1, 0.36, 1); /* ease-out, no overshoot */
       }
 
       * {
@@ -166,7 +170,9 @@ const {
           0 1px 0 rgba(255, 255, 255, 0.05) inset,
           0 3px 4px -1px rgba(0, 0, 0, 0.22),
           0 26px 46px -24px rgba(0, 0, 0, 0.45);
-        transition: box-shadow 0.3s ease, transform 0.3s ease;
+        transition: box-shadow 0.25s var(--ease), transform 0.25s var(--ease);
+        transform: scale(1);
+        will-change: transform;
       }
 
       .frame__mat {
@@ -228,23 +234,32 @@ const {
         white-space: nowrap;
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0.28s ease, transform 0.28s ease;
+        transform: translate(-50%, 4px); /* 4px rise on reveal */
+        transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
       }
 
       @media (hover: hover) and (pointer: fine) {
+        /* Hover lift: lean in toward the work (real frames only) */
         a.frame:hover {
           box-shadow:
             0 0 0 1px rgba(0, 0, 0, 0.4),
             0 1px 0 rgba(255, 255, 255, 0.05) inset,
-            0 4px 6px -1px rgba(0, 0, 0, 0.26),
-            0 34px 56px -24px rgba(0, 0, 0, 0.5);
-          transform: translateY(-2px);
+            0 6px 10px -2px rgba(0, 0, 0, 0.28),
+            0 40px 64px -24px rgba(0, 0, 0, 0.55);
+          transform: scale(1.01);
         }
 
         a.frame:hover .frame__notice {
           opacity: 1;
           transform: translate(-50%, 0);
         }
+      }
+
+      /* Press feedback: almost subliminal dip (mouse + touch via pointer JS).
+         Placed after :hover so it wins when pressing a hovered frame. */
+      a.frame.is-pressed {
+        transform: scale(0.995);
+        transition: transform 0.1s var(--ease);
       }
 
       /* ---- The placard (wall label) ---- */
@@ -392,6 +407,128 @@ const {
           padding: 60px 22px 72px;
         }
       }
+
+      /* ---- Scroll reveal (only when motion is allowed) ---- */
+      @media (prefers-reduced-motion: no-preference) {
+        /* Hidden state is applied by JS (is-pre) only once the observer is
+           live, so content is visible by default if JS never runs. */
+        .reveal.is-pre {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        .reveal.is-in {
+          opacity: 1;
+          transform: none;
+          transition:
+            opacity 0.6s var(--ease),
+            transform 0.6s var(--ease);
+          transition-delay: var(--reveal-delay, 0ms);
+        }
+
+        /* ---- Page crossfade via View Transitions (~300ms) ---- */
+        ::view-transition-old(root) {
+          animation: vt-fade-out 0.3s var(--ease) both;
+        }
+        ::view-transition-new(root) {
+          animation: vt-fade-in 0.3s var(--ease) both;
+        }
+        @keyframes vt-fade-out {
+          to {
+            opacity: 0;
+          }
+        }
+        @keyframes vt-fade-in {
+          from {
+            opacity: 0;
+          }
+        }
+      }
+
+      /* ---- Reduced motion: everything simply appears, no transforms ---- */
+      @media (prefers-reduced-motion: reduce) {
+        .reveal,
+        .reveal.is-pre,
+        .reveal.is-in {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+        .frame,
+        a.frame:hover,
+        a.frame.is-pressed {
+          transform: none !important;
+          transition: none !important;
+        }
+        .frame__notice {
+          transform: translate(-50%, 0) !important;
+          transition: none !important;
+        }
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+          animation: none !important;
+        }
+      }
     </style>
+
+    <script>
+      // Quiet-gallery motion: scroll reveal (stagger), press feedback.
+      // Progressive enhancement — content is visible unless this runs.
+      function initMotion() {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Press feedback on real (linked) frames only — mouse + touch.
+        document.querySelectorAll('a.frame').forEach((frame) => {
+          if (frame.dataset.pressBound) return;
+          frame.dataset.pressBound = '1';
+          const press = () => frame.classList.add('is-pressed');
+          const release = () => frame.classList.remove('is-pressed');
+          frame.addEventListener('pointerdown', press);
+          frame.addEventListener('pointerup', release);
+          frame.addEventListener('pointerleave', release);
+          frame.addEventListener('pointercancel', release);
+        });
+
+        const reveals = document.querySelectorAll('.reveal');
+        if (reduce || !('IntersectionObserver' in window) || !reveals.length) {
+          return; // leave everything visible
+        }
+
+        // Hide now that we know we can reveal.
+        reveals.forEach((el) => el.classList.add('is-pre'));
+
+        const show = (el, delay) => {
+          el.style.setProperty('--reveal-delay', delay + 'ms');
+          el.classList.remove('is-pre');
+          el.classList.add('is-in');
+        };
+
+        const io = new IntersectionObserver(
+          (entries, obs) => {
+            const visible = entries
+              .filter((e) => e.isIntersecting)
+              .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+            visible.forEach((entry, i) => {
+              const base = i * 120; // gentle stagger between works in a flush
+              const group = entry.target;
+              obs.unobserve(group);
+              if (group.matches('.section__head')) {
+                show(group, base);
+              } else {
+                const frame = group.querySelector('[data-reveal="frame"]');
+                const placard = group.querySelector('[data-reveal="placard"]');
+                if (frame) show(frame, base);
+                if (placard) show(placard, base + 150); // placard follows frame
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+        );
+
+        document.querySelectorAll('[data-reveal-group]').forEach((g) => io.observe(g));
+      }
+
+      // Runs on first load and after every View Transitions navigation.
+      document.addEventListener('astro:page-load', initMotion);
+    </script>
   </body>
 </html>
