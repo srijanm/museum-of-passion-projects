@@ -18,7 +18,7 @@ const VIEWPORT = { width: 1440, height: 900 };
 const works = [
   { url: 'https://iknowaspot.in', file: 'iknowaspot.png' },
   { url: 'https://bhaisepoocho.com', file: 'bhaisepoocho.png' },
-  { url: 'https://old-internet-zeta.vercel.app', file: 'oldinternet.png' },
+  { url: 'https://museumofpassionprojects.com/oldinternet', file: 'oldinternet.png' },
 ];
 
 async function capture(context, { url, file }) {

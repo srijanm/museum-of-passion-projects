@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<base href="/oldinternet/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Old Internet — make twitter feel like the old internet</title>
+<meta name="description" content="A free Chrome extension that makes Twitter look like it's 2006.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23000080'/%3E%3Ctext x='50%25' y='62%25' font-family='Impact,Arial Black,sans-serif' font-size='10' fill='%23FFD700' text-anchor='middle'%3EOI%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Mobile-only banner -->
+<div class="mobile-banner">
+  best viewed on a desktop computer (the way we used to) ·
+  <span>→ releasing 12/06</span>
+</div>
+
+<!-- Page container — white card on top of starfield bg -->
+<div class="page-container">
+
+  <!-- Marquee bar -->
+  <div class="marquee-bar">
+    <marquee behavior="scroll" direction="left" scrollamount="6">
+      ★ NEW! ★ FREE! ★ EDITOR'S PICK ★ FEATURED ON TUCOWS ★ 5 STARS ★ Y2K READY ★ DESIGNED FOR GOOGLE CHROME™ ★
+    </marquee>
+  </div>
+
+  <!-- BANNER AD (dancing baby) -->
+  <aside class="ad-zone" aria-label="Advertisement">
+    <p class="ad-label">advertisement</p>
+    <div class="ad-banner" id="ad-banner" role="button" tabindex="0">
+      <img class="ad-baby ad-baby-left" src="assets/baby.gif" alt="dancing baby">
+      <div class="ad-center">
+        <div class="ad-burst" aria-hidden="true"><span>WIN!<br>iMAC G3</span></div>
+        <div class="ad-headline">PUNCH THE<br>DANCING BABY!!</div>
+        <div class="ad-clickhere">▶▶ CLICK HERE!! ◀◀</div>
+      </div>
+      <img class="ad-baby ad-baby-right" src="assets/baby.gif" alt="dancing baby">
+    </div>
+  </aside>
+
+  <!-- Page content -->
+  <main class="content">
+
+    <hr class="section-divider">
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1 class="logo" data-text="OLD INTERNET™">OLD INTERNET™</h1>
+      <p class="tagline"><em>make twitter feel like the old internet.</em></p>
+      <p class="subtagline"><span class="link-blue">a free chrome extension.</span></p>
+      <div class="hero-marquee">
+        <marquee behavior="scroll" direction="right" scrollamount="5">
+          ★ LIMITED TIME!! ★ NO CREDIT CARD!! ★ WORKS ON 28.8K MODEMS ★ NOW 50% MORE NOSTALGIC ★ AS SEEN ON TUCOWS ★ A REAL CHROME EXTENSION ★ NOT A VIRUS (PROMISE) ★
+        </marquee>
+      </div>
+
+      <div class="hero-cols">
+        <div class="hero-left">
+          <div class="box-wrap">
+            <img class="box-img" src="assets/box.png" alt="Old Internet — product box">
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="tucows-badge">
+            <div class="tucows-heading">TUCOWS RATING:</div>
+            <div class="tucows-cows">🐄🐄🐄🐄🐄 <span>5 COWS</span></div>
+            <div class="tucows-sub"><em>Editor's Choice — November 1999</em></div>
+          </div>
+          <span class="btn-download" id="download-btn-1">
+            <span class="text">▶ RELEASING 12/06 ◀</span>
+          </span>
+          <div class="reviews-panel">
+            <div class="reviews-heading">★ WHAT THE CRITICS SAY ★</div>
+            <p class="review-quote"><span class="r-stars">★★★★★</span> <em>"I haven't felt this happy since Y2K!"</em> — <strong>PCWorld</strong></p>
+            <p class="review-quote"><span class="r-stars">★★★★★</span> <em>"Finally a product that respects the user."</em> — <strong>ZDNet</strong></p>
+            <p class="review-quote"><span class="r-stars">★★★★★</span> <em>"11/10 would dial up again."</em> — <strong>Wired</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AWARDS STRIP -->
+    <aside class="awards" aria-label="Awards">
+      <span class="award">★★★★ HotDog!</span>
+      <span class="award">Editor's Pick — ZDNet</span>
+      <span class="award">Cool Site of the Day</span>
+      <span class="award">Y2K Tested</span>
+    </aside>
+
+    <div class="gif-divider" role="separator" aria-hidden="true">
+      <span class="gif-divider-arrows">▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼</span>
+    </div>
+
+    <!-- OG TWEET — historical artifact -->
+    <section class="panel og-tweet-section">
+      <p class="og-tweet-eyebrow">★ HISTORICAL ARTIFACT ★</p>
+      <h2 class="section-header og-tweet-header">this is what they took from us</h2>
+      <figure class="og-tweet-figure">
+        <div class="og-tweet-matte">
+          <img src="assets/og-tweet.jpg" alt="Jack Dorsey's first tweet: just setting up my twttr — March 21, 2006" class="og-tweet-img">
+        </div>
+        <figcaption class="og-tweet-caption">
+          <em>jack dorsey, @jack — <strong>3:50 PM · 21 Mar 06</strong></em><br>
+          <span class="og-tweet-sub">this is the twitter we miss. <span class="link-blue">bring it back ↓</span></span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- PREVIEW (now SHOWCASE) -->
+    <section class="panel">
+      <h2 class="section-header showcase-header" data-text="★ SHOWCASE ★ — see it in action!! ★">★ SHOWCASE ★ — see it in action!! ★</h2>
+      <div class="preview-grid preview-grid-single">
+
+        <figure class="preview-tile" data-img="assets/bier.jpg" data-caption="nikita bier's twitter, as twitter 2006" data-tag="the most online man on earth, on the least online twitter">
+          <div class="matte">
+            <img src="assets/bier.jpg" alt="nikita bier's twitter rendered as twitter 2006" class="shot">
+          </div>
+          <figcaption>
+            <span class="link-blue"><strong>nikita bier's twitter, as twitter 2006</strong></span><br>
+            <span class="link-blue"><em>the most online man on earth, on the least online twitter</em></span>
+          </figcaption>
+        </figure>
+
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- SYSTEM REQUIREMENTS -->
+    <section class="panel sysreq sysreq-dialog">
+      <div class="sysreq-titlebar">
+        <span class="sysreq-titlebar-text">★ SYSTEM REQUIREMENTS ★</span>
+        <div class="sysreq-tb-btns">
+          <button class="dialup-tb-btn" aria-hidden="true" tabindex="-1">_</button>
+          <button class="dialup-tb-btn" aria-hidden="true" tabindex="-1">□</button>
+          <button class="dialup-tb-btn" aria-hidden="true" tabindex="-1">✕</button>
+        </div>
+      </div>
+      <div class="sysreq-body">
+        <dl>
+          <dt>OS</dt>           <dd>Windows 95 or higher · Mac OS 8.5+</dd>
+          <dt>Processor</dt>    <dd>Pentium II 233 MHz</dd>
+          <dt>Memory</dt>       <dd>16 MB RAM (32 MB recommended)</dd>
+          <dt>Connection</dt>   <dd>28.8k modem</dd>
+          <dt>Browser</dt>      <dd>Google Chrome (or Netscape 4.0+ with shim)</dd>
+          <dt>Disk Space</dt>   <dd>1.2 MB free</dd>
+          <dt>Sound Card</dt>   <dd>Sound Blaster 16 compatible (optional)</dd>
+        </dl>
+
+        <h3 class="sub-heading">COMPATIBILITY CHART</h3>
+        <table class="compat-table">
+          <thead><tr><th>Platform</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Windows 95</td>     <td><span class="ok">✓ COMPATIBLE</span></td></tr>
+            <tr><td>Windows 98</td>     <td><span class="ok">✓ COMPATIBLE</span></td></tr>
+            <tr><td>Windows ME</td>     <td><span class="ok">✓ COMPATIBLE</span> <span class="ok-note">(godspeed)</span></td></tr>
+            <tr><td>Mac OS 8.5+</td>    <td><span class="ok">✓ COMPATIBLE</span></td></tr>
+            <tr><td>Linux</td>          <td><span class="bad">✗ use a real OS</span></td></tr>
+            <tr><td>WebTV</td>          <td><span class="bad">✗ no</span></td></tr>
+            <tr><td>iPhone</td>         <td><span class="bad">✗ does not exist yet</span></td></tr>
+            <tr><td>Palm Pilot</td>     <td><span class="warn">⚠ untested</span></td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="sub-heading">INSTALLATION INSTRUCTIONS:</h3>
+        <ol class="install-steps">
+          <li>Click the big green DOWNLOAD button.</li>
+          <li>Wait for download to complete (28.8k modem: ~3 minutes).</li>
+          <li>Open the file.</li>
+          <li>Internet ages backward.</li>
+          <li>Touch grass.</li>
+        </ol>
+
+        <h3 class="sub-heading">KNOWN ISSUES:</h3>
+        <p class="known-issues">May cause sudden urge to print out emails. Side effects include nostalgia, AIM nostalgia, and inability to use Twitter normally ever again. Not responsible for damaged friendships when forwarding chain emails. Best paired with a CRT monitor and a Snapple.</p>
+
+        <div class="sysreq-cta">
+          <img src="assets/construction.gif" alt="under construction">
+          <span>more skins coming soon!</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECOND CTA -->
+    <section class="cta-2">
+      <p class="cta-2-lead">like what you see? →</p>
+      <span class="btn-download" id="download-btn-2">
+        <span class="text">▶ RELEASING 12/06 ◀</span>
+      </span>
+    </section>
+
+    <div class="gif-divider" role="separator" aria-hidden="true">
+      <span class="gif-divider-flames"></span>
+      <span class="gif-divider-stars">🔥 🔥 🔥 NEW POSTS!! 🔥 🔥 🔥 NEW POSTS!! 🔥 🔥 🔥</span>
+      <span class="gif-divider-flames"></span>
+    </div>
+
+    <!-- GUESTBOOK -->
+    <section class="panel guestbook-section">
+      <p class="guestbook-eyebrow">✏ NEW MESSAGES! ✏</p>
+      <h2 class="guestbook-title">★ SIGN MY GUESTBOOK!! ★</h2>
+
+      <form id="guestbook-form" class="guestbook-form" novalidate>
+        <label class="gb-label">your name:
+          <input type="text" id="gb-name" maxlength="100" required>
+        </label>
+        <label class="gb-label">leave a message:
+          <textarea id="gb-message" rows="3" maxlength="280" required></textarea>
+        </label>
+        <button type="submit" class="gb-submit">★ POST!! ★</button>
+        <p class="gb-error" id="gb-error" hidden>both fields are required, friend.</p>
+      </form>
+
+      <div id="guestbook-entries" class="guestbook-entries"></div>
+
+      <p class="gb-meta" id="gb-meta">[ showing 10 of 1,847 entries ]</p>
+      <p class="gb-pagination">← previous · 1 2 3 ... 184 · next →</p>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- SIDEBAR WIDGETS -->
+    <aside class="widgets" aria-label="Sidebar widgets">
+
+      <div class="widget widget-maroon" id="poll-widget">
+        <div class="widget-title">📊 TODAY'S POLL</div>
+        <div class="widget-body" id="poll-body">
+          <!-- poll content rendered by script.js -->
+        </div>
+      </div>
+
+      <div class="widget widget-cyan" id="shoutbox-widget">
+        <div class="widget-title">💬 LIVE SHOUTBOX</div>
+        <div class="widget-body">
+          <div class="shoutbox-feed" id="shoutbox-feed"></div>
+          <p class="shoutbox-meta"><span class="shoutbox-dot"></span> 42 users online · chatting NOW!!</p>
+        </div>
+      </div>
+
+      <div class="widget widget-forest widget-wide" id="webring-widget">
+        <div class="widget-title">★ THE OLD INTERNET WEBRING ★</div>
+        <div class="widget-body">
+          <p class="webring-nav">
+            <a href="#" class="webring-link" id="webring-prev">← previous</a> ·
+            <a href="#" class="webring-link" id="webring-random">random</a> ·
+            <a href="#" class="webring-link" id="webring-next">next →</a>
+          </p>
+          <p class="webring-meta">
+            This site is part of the Old Internet Webring · <strong>Members: 1</strong>
+          </p>
+          <p class="webring-help">click around — these are real 1999 websites preserved by the Internet Archive</p>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- DIVIDER (one rainbow kept for variety) -->
+    <div class="gif-divider" role="separator" aria-hidden="true">
+      <span class="gif-divider-rainbow"></span>
+      <span class="gif-divider-stars">★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★</span>
+      <span class="gif-divider-rainbow"></span>
+    </div>
+
+    <!-- WHY -->
+    <section class="panel">
+      <h2 class="section-header webmasters-msg-header">~ a message from the webmasters ~</h2>
+      <div class="poem">
+        <p>i miss the old internet<br>
+        dialup screaming "get off the phone"<br>
+        i miss the old internet<br>
+        with weird little pages made by weird little kids</p>
+
+        <p>i miss the old internet<br>
+        before the feed knew my name<br>
+        i miss the old internet<br>
+        before every scroll was a sale</p>
+
+        <p>i miss the old internet<br>
+        and i think the old internet misses me too</p>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ABOUT (now THE WEBMASTERS) -->
+    <section class="panel">
+      <marquee direction="right" class="webmasters-marquee gold" scrollamount="5">★ ★ ★ ★ ★ ★ ★ ★ ★ ★</marquee>
+      <h2 class="section-header webmasters-title">★ THE WEBMASTERS ★</h2>
+      <marquee direction="left" class="webmasters-marquee pink" scrollamount="5">✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿ ✿</marquee>
+      <p class="about">
+        made by
+        <a href="https://x.com/srijan_mahajan">srijan</a>,
+        <a href="https://x.com/heyprat">pratyush</a> &amp;
+        <a href="https://code.claude.com/docs/en/overview">claude code</a>.
+      </p>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="hit-counter">
+        <img class="hit-globe" src="assets/globe.gif" alt="">
+        <span class="hit-label">visitors WORLDWIDE!</span>
+        <span class="lcd">visitor # <span id="visitor-count">00001337</span></span>
+        <div class="lcd-label">since dec 1999</div>
+      </div>
+
+      <div class="web-badges" aria-label="Web badges">
+        <span class="webbtn webbtn-netscape">Get Netscape Now!</span>
+        <span class="webbtn webbtn-notepad">Made with Notepad</span>
+        <span class="webbtn webbtn-html">HTML 4.0 Compliant</span>
+        <span class="webbtn webbtn-y2k">Y2K Tested</span>
+        <span class="webbtn webbtn-anykey">Any Browser</span>
+      </div>
+
+      <p class="last-updated">last updated: 12/31/1999</p>
+      <p class="footer-line">best viewed in netscape navigator 4.0 at 800×600</p>
+    </footer>
+
+  </main><!-- /.content -->
+</div><!-- /.page-container -->
+
+
+
+<!-- SOUND TOGGLE -->
+<button class="sound-toggle" id="sound-toggle">
+  <span id="sound-toggle-label">🔊 TURN ON SOUNDS</span>
+</button>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox-overlay" id="lightbox-overlay"></div>
+  <div class="lightbox-panel">
+    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <div class="lightbox-matte">
+      <img id="lightbox-img" src="" alt="">
+    </div>
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+    <span class="btn-download lightbox-cta">
+      <span class="text">▶ RELEASING 12/06 ◀</span>
+    </span>
+  </div>
+</div>
+
+<!-- DIAL-UP MODAL (first visit) -->
+<div class="dialup-modal" id="dialup-modal" hidden>
+  <div class="dialup-overlay" id="dialup-overlay"></div>
+  <div class="dialup-window" role="dialog" aria-labelledby="dialup-title">
+    <div class="dialup-titlebar">
+      <span id="dialup-title">Dialing Progress</span>
+      <div class="dialup-titlebar-btns">
+        <button class="dialup-tb-btn" aria-hidden="true" tabindex="-1">_</button>
+        <button class="dialup-tb-btn" aria-hidden="true" tabindex="-1">□</button>
+        <button class="dialup-tb-btn dialup-close" id="dialup-close" aria-label="close">✕</button>
+      </div>
+    </div>
+    <div class="dialup-body">
+      <div class="dialup-iconpane">
+        <span class="dialup-emoji">🌐</span>
+        <span class="dialup-dots" aria-hidden="true">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </span>
+        <span class="dialup-emoji">💻</span>
+      </div>
+      <div class="dialup-info">
+        <p class="dialup-status" id="dialup-status">Initializing modem...</p>
+        <div class="dialup-progress">
+          <div class="dialup-progress-bar" id="dialup-progress-bar"></div>
+        </div>
+        <p class="dialup-speed">28,800 bps · COM3</p>
+      </div>
+    </div>
+    <div class="dialup-actions">
+      <button class="dialup-btn" id="dialup-cancel">Cancel</button>
+      <button class="dialup-btn" id="dialup-connect">Connect</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
