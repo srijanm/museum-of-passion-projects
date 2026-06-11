@@ -31,7 +31,11 @@ const { work } = Astro.props as { work: Work };
       <span class="placard__title">{work.title}</span><span class="placard__year">, {work.year}</span>
     </p>
     <p class="placard__medium">{work.medium}</p>
-    <p class="placard__meta">{work.accession} · {work.credit}</p>
+    <p class="placard__meta">
+      <span class="placard__accession">{work.accession}</span>
+      <span class="placard__sep" aria-hidden="true"> · </span>
+      <span class={`placard__credit${work.credit === "Collection of the Museum" ? " placard__credit--owned" : ""}`}>{work.credit}</span>
+    </p>
     <p class="placard__note">{work.note}</p>
   </figcaption>
 </figure>
